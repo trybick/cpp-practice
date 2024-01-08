@@ -2,10 +2,22 @@
 #include <iomanip>
 #include <sstream>
 
+double USD_TO_EUR = 0.91;
+double EUR_TO_USD = 1.09;
+
+void convert(int amount, bool isUSDtoEUR) {
+    float answer = amount * (isUSDtoEUR ? USD_TO_EUR : EUR_TO_USD);
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << answer;
+    std::string s = stream.str();
+    if (isUSDtoEUR) {
+        std::cout << (std::to_string(amount) + " USD is " + s) + " EUR";
+    } else {
+        std::cout << (std::to_string(amount) + " EUR is " + s) + " USD";
+    }
+}
 
 int main() {
-    double USD_TO_EUR = 0.91;
-    double EUR_TO_USD = 1.09;
     int option;
     int amount;
 
@@ -21,20 +33,13 @@ int main() {
 
     std::cout << "Enter an amount: ";
     std::cin >> amount;
+    std::cout << "\n";
 
     if (option == 1) {
-        float answer = amount * USD_TO_EUR;
-        std::stringstream stream;
-        stream << std::fixed << std::setprecision(2) << answer;
-        std::string s = stream.str();
-        std::cout << (std::to_string(amount) + " USD is " + s) + " EUR";
+        convert(amount, true);
     } else if (option == 2) {
-        float answer = amount * EUR_TO_USD;
-        std::stringstream stream;
-        stream << std::fixed << std::setprecision(2) << answer;
-        std::string s = stream.str();
-        std::cout << (std::to_string(amount) + " EUR is " + s) + " USD";
+        convert(amount, false);
     }
-
+    std::cout << "\n";
     return 0;
 }
