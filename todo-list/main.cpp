@@ -1,8 +1,5 @@
 #include <iostream>
-
-// Receive input for and handle:
-// - add new todo
-// - mark a todo as complete
+#include <string>
 
 void showHeader() {
   std::cout << "  _____           _       " << std::endl;
@@ -16,6 +13,10 @@ void showTodos() {
   // fetch todos
 }
 
+void storeTodo(const std::string& newTodo) {
+  //
+}
+
 int main() {
   showHeader();
   showTodos();
@@ -23,6 +24,7 @@ int main() {
   bool shouldDisplayMainMenu = true;
 
   int choice;
+  std::string newTodo;
   while (shouldDisplayMainMenu) {
     std::cout << "Select an option:" << std::endl;
     std::cout << "1. Add a task" << std::endl;
@@ -35,14 +37,13 @@ int main() {
     switch (choice) {
       case 1:
         shouldDisplayMainMenu = false;
-
-        // add a todo
-        std::cout << "Select an option:" << std::endl;
-
+        std::cout << "Enter todo text:\n" << std::endl;
+        std::cin >> newTodo;
+        storeTodo(newTodo);
         break;
       case 2:
-        std::cout << "You selected Option 2." << std::endl;
         shouldDisplayMainMenu = false;
+        // edit todo
         break;
       case 0:
         std::cout << "Exiting the program." << std::endl;
